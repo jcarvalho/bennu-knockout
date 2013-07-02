@@ -48,11 +48,15 @@ define(['jquery', 'knockout', 'i18n!nls/messages'], function($, ko, messages) {
 	}
 
 	ko.bindingHandlers.i18n = {
-	    init: function(element, valueAccessor, allBindingsAccessor, viewModel, bindingContext) {
-			$(element).html(getMessage(ko.utils.unwrapObservable(valueAccessor())));
-	    },
-	    update: function(element, valueAccessor, allBindingsAccessor, viewModel, bindingContext) {
-
+	    update: function(element, valueAccessor, allBindingsAccessor, viewModel) {
+			var text = getMessage(ko.utils.unwrapObservable(valueAccessor()));
+			var index = 0;
+			while((index = text.indexOf('{', index + 1)) > 0) {
+				var closeIndex = text.indexOf('}', index);
+				var subStr = text.substring(index + 1, closeIndex);
+				text = text.replace('{' + subStr + '}', ko.utils.unwrapObservable(viewModel[subStr]));
+			}
+			$(element).html(text);
 	    }
 	}
 
