@@ -1,6 +1,6 @@
 define(['jquery', 'knockout', 'i18n!nls/messages'], function($, ko, messages) {
 
-	var templateModel = {
+	var appContents = {
 
 	};
 
@@ -19,13 +19,11 @@ define(['jquery', 'knockout', 'i18n!nls/messages'], function($, ko, messages) {
 
 	ko.bindingHandlers.app = {
 	    init: function(element, valueAccessor, allBindingsAccessor, viewModel, bindingContext) {
-	        // This will be called when the binding is first applied to an element
-	        // Set up any initial state, event handlers, etc. here
 			$(element).append("<div id='bennu-ko-container'></div>");
-			getTemplateForView(valueAccessor());
+			getAppContentsForView(valueAccessor());
 	    },
 	    update: function(element, valueAccessor, allBindingsAccessor, viewModel, bindingContext) {
-			viewModel = templateModel[valueAccessor()];
+			viewModel = appContents[valueAccessor()];
 			if(!viewModel.template) {
 				viewModel = viewModel['_$bennuKo$_parent'];
 			}
@@ -51,22 +49,17 @@ define(['jquery', 'knockout', 'i18n!nls/messages'], function($, ko, messages) {
 
 	ko.bindingHandlers.i18n = {
 	    init: function(element, valueAccessor, allBindingsAccessor, viewModel, bindingContext) {
-			var value = valueAccessor();
-			if(typeof value === 'function') {
-				$(element).html(getMessage(value()));
-			} else {
-				$(element).html(getMessage(value));
-			}
+			$(element).html(getMessage(ko.utils.unwrapObservable(valueAccessor())));
 	    },
 	    update: function(element, valueAccessor, allBindingsAccessor, viewModel, bindingContext) {
 
 	    }
 	}
 
-	var getTemplateForView = function(viewName) {
-		var template = templateModel[viewName];
+	var getAppContentsForView = function(appName) {
+		var template = appContents[appName];
 		if(!template) {
-			templateModel[viewName] = template = {
+			appContents[appName] = template = {
 				template: ko.observable(),
 				selectedViewModel: ko.observable(null)
 			};
@@ -76,15 +69,15 @@ define(['jquery', 'knockout', 'i18n!nls/messages'], function($, ko, messages) {
 
 	return {
 
-		loadPage: function(viewName, viewModel, template) {
-			var targetModel = getTemplateForView(viewName);
+		loadPage: function(appName, viewModel, template) {
+			var targetModel = getAppContentsForView(appName);
 			viewModel['_$bennuKo$_parent'] = targetModel;
 			targetModel.selectedViewModel(viewModel);
 			targetModel.template(template);
 		},
 
 		initialize: function() {
-			ko.applyBindings(templateModel);
+			ko.applyBindings(appContents);
 			console.log("Successfully initialized bennu-knockout");
 		}
 
