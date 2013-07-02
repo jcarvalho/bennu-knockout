@@ -1,8 +1,7 @@
 define(['jquery', 'knockout', 'i18n!nls/messages'], function($, ko, messages) {
 
 	var templateModel = {
-		template: ko.observable(),
-		selectedViewModel: ko.observable(null)
+
 	};
 
 	var getTemplate = function(templateName, callback) {
@@ -18,16 +17,15 @@ define(['jquery', 'knockout', 'i18n!nls/messages'], function($, ko, messages) {
 		});
 	};
 
-	var appName = ko.observable(undefined);
-
 	ko.bindingHandlers.app = {
 	    init: function(element, valueAccessor, allBindingsAccessor, viewModel, bindingContext) {
 	        // This will be called when the binding is first applied to an element
 	        // Set up any initial state, event handlers, etc. here
-			appName(valueAccessor());
 			$(element).append("<div id='bennu-ko-container'></div>");
+			getTemplateForView(valueAccessor());
 	    },
 	    update: function(element, valueAccessor, allBindingsAccessor, viewModel, bindingContext) {
+			viewModel = templateModel[valueAccessor()];
 			if(!viewModel.template) {
 				viewModel = viewModel['_$bennuKo$_parent'];
 			}
@@ -65,19 +63,29 @@ define(['jquery', 'knockout', 'i18n!nls/messages'], function($, ko, messages) {
 	    }
 	}
 
+	var getTemplateForView = function(viewName) {
+		var template = templateModel[viewName];
+		if(!template) {
+			templateModel[viewName] = template = {
+				template: ko.observable(),
+				selectedViewModel: ko.observable(null)
+			};
+		}
+		return template;
+	}
+
 	return {
 
-		'appName': appName,
-
-		LoadPage: function(viewModel, template) {
-			viewModel['_$bennuKo$_parent'] = templateModel;
-			templateModel.selectedViewModel(viewModel);
-			templateModel.template(template);
+		loadPage: function(viewName, viewModel, template) {
+			var targetModel = getTemplateForView(viewName);
+			viewModel['_$bennuKo$_parent'] = targetModel;
+			targetModel.selectedViewModel(viewModel);
+			targetModel.template(template);
 		},
 
 		initialize: function() {
 			ko.applyBindings(templateModel);
-			console.log("Successfully initialized bennu-knockout app '" + appName() + "'");
+			console.log("Successfully initialized bennu-knockout");
 		}
 
 	};
