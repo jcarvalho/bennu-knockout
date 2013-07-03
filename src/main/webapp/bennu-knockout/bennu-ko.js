@@ -4,7 +4,6 @@ function loadRequire(url, callback) {
 	var script = document.createElement('script');
 	script.type = 'text/javascript';
 	script.src = url;
-	script.async = true;
 
 	// then bind the event to the callback function 
 	// there are several events for cross browser compatibility
@@ -15,17 +14,31 @@ function loadRequire(url, callback) {
 	head.appendChild(script);
 }
 
-
-var require = {
-    baseUrl: 'js',
-    paths: {
-        jquery: '../../bennu-knockout/libs/jquery',
-        i18n: '../../bennu-knockout/libs/i18n',
-        knockout: '../../bennu-knockout/libs/knockout',
-        'bennu-knockout': '../../bennu-knockout/bennu-knockout',
-    }
-};
-
 loadRequire('../bennu-knockout/libs/require.js', function() {
+
+	// Configure default paths
+	requirejs.config({
+		baseUrl: 'js',
+	    paths: {
+	        jquery: '../../bennu-knockout/libs/jquery',
+	        i18n: '../../bennu-knockout/libs/i18n',
+	        knockout: '../../bennu-knockout/libs/knockout',
+	        'bennu-knockout': '../../bennu-knockout/bennu-knockout',
+	    },
+	    // And the i18n plugin
+		config: {
+	        i18n: {
+	            locale: (typeof BennuPortal !== "undefined") ? BennuPortal.locale.tag.toLowerCase() : "en-en"
+	        }
+    	}
+	});
+
+	// Initialize bennu-knockout
+	require(['bennu-knockout'], function(bennuKo) {
+		bennuKo.initialize();		
+	});
+
+	// Run the application
     require(['main']);
+
 });
