@@ -39,6 +39,49 @@ define(['jquery', 'knockout', 'i18n!nls/messages'], function($, ko, messages) {
 	    }
 	};
 
+	ko.bindingHandlers.pager = {
+	    init: function(element, valueAccessor, allBindingsAccessor, viewModel, bindingContext) {
+		    var arrayName = ko.utils.unwrapObservable(valueAccessor());
+
+		    var contents = $(element).html();
+
+		    var pagerModel = viewModel[arrayName + '$_pager'] = {};
+
+		    var itemsPerPage = 2;
+		    var currentPageObs = pages = ko.observable(1);
+		    pagerModel['currentPage'] = currentPageObs;
+		    pagerModel['pagedArray'] = ko.computed(function() {
+		    	var collection = ko.utils.unwrapObservable(viewModel[arrayName]);
+		    	var firstItemIndex = itemsPerPage * (currentPageObs() -1);
+		    	return collection.slice(firstItemIndex, firstItemIndex + itemsPerPage);
+		    });
+		    var numPages = ko.computed(function() {
+		    	return 2;
+		    });
+		    pagerModel['next'] = function() {
+		    	if(currentPageObs() < numPages()) {
+			    	currentPageObs(currentPageObs() + 1);
+			    }
+		    }
+		    pagerModel['previous'] = function() {
+		    	if(currentPageObs() > 1) {
+			    	currentPageObs(currentPageObs() - 1);
+			    }
+		    }
+		    pagerModel['numPages'] = numPages;
+
+		    $(element).html('<div data-bind="with: ' + arrayName +'$_pager"><!-- ko foreach: pagedArray -->' + contents + '<!-- /ko --></div>');
+
+		    $(element).append('<div data-bind="with: ' + arrayName +'$_pager">\
+		    	<div class="pagination pagination-small">\
+		    		<ul>\
+		    			<li data-bind="css: { disabled: currentPage() == 1 }"><a href="#" data-bind="click: previous">&laquo;</a></li>\
+		    			<li data-bind="css: { disabled: currentPage() == numPages() }"><a href="#" data-bind="click: next">&raquo;</a></li>\
+		    		</ul>\
+		    	</div></div>');
+	    }
+	};
+
 	var getMessage = function(key) {
 		if(messages[key]) {
 			return messages[key];
