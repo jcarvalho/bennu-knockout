@@ -45,6 +45,8 @@ define(['jquery', 'knockout', 'i18n!nls/messages'], function($, ko, messages) {
 	    init: function(element, valueAccessor, allBindingsAccessor, viewModel, bindingContext) {
 		    var contents = $(element).html();
 
+		    var collection = ko.utils.unwrapObservable(valueAccessor());
+
 		    var id = 'pager' + idCounter++;
 
 		    var pagerModel = viewModel[id + '$_pager'] = {};
@@ -53,12 +55,11 @@ define(['jquery', 'knockout', 'i18n!nls/messages'], function($, ko, messages) {
 		    var currentPageObs = pages = ko.observable(1);
 		    pagerModel['currentPage'] = currentPageObs;
 		    pagerModel['pagedArray'] = ko.computed(function() {
-		    	var collection = ko.utils.unwrapObservable(valueAccessor());
 		    	var firstItemIndex = itemsPerPage * (currentPageObs() -1);
 		    	return collection.slice(firstItemIndex, firstItemIndex + itemsPerPage);
 		    });
 		    var numPages = ko.computed(function() {
-		    	return 2;
+		    	return Math.ceil(collection.length / itemsPerPage);
 		    });
 		    pagerModel['next'] = function() {
 		    	if(currentPageObs() < numPages()) {
