@@ -1,0 +1,254 @@
+<html lang="en">
+	<head>
+		<title>Impress Demo</title>
+		<link rel="stylesheet" type="text/css" href="style.css">
+	</head>
+	<body>
+		<img src="IST_C_RGB_NEG.png" class="ist" />
+		<div id="impress">
+
+			<div id="start" class="step big center">
+				<img src="ko-logo.png" />
+				<br />
+				Knockout JS
+				<br />
+				+
+				<br />
+				 Bennu 2
+			</div>
+
+			<div id="slide2" data-x="1400" class="step center">
+				Javascript UIs using the Model-View-ViewModel Pattern
+			</div>
+
+			<div id="what-mvvm" data-x="1400" data-y="1000" class="step">
+				Targets Event-Driven UI development platforms
+
+				<br />&nbsp;
+				<p>
+					<ul>
+						<li>Model: Business/Backend Logic</li>
+						<li>View: HTML Markup</li>
+						<li>ViewModel: Value Converter</li>
+					</ul>
+				</p>
+			</div>
+
+			<div id="slide3" data-x="5000" class="step">
+				Declarative Bindings
+			</div>
+
+			<div id="slide4" data-x="5000" data-z="1000" class="step">
+				<br />
+				<br />
+				Automatic UI Refresh
+			</div>
+
+			<div id="slide5" data-x="5000" data-z="2000" class="step">
+				<br />
+				<br />
+				<br />
+				Dependency Tracking
+			</div>
+
+			<div id="slide6" data-x="7500" data-z="2000" class="step">
+				<h3>Example:</h3>
+				<input type="text" data-bind="value: name, valueUpdate: 'afterkeydown'" />
+				<br />&nbsp;
+				<div data-bind="text: prettyName"></div>
+			</div>
+
+			<div id="slide7" data-x="7500" data-y="1000" data-z="2000" class="step">
+				<p>
+					Markup:
+					<br />
+					<pre style="background:#0c1021;color:#f8f8f8"><span style="color:#7f90aa">&lt;<span style="color:#7f90aa">input</span> <span style="color:#7f90aa">type</span>=<span style="color:#61ce3c">"text"</span> <span style="color:#7f90aa">data-bind</span>=<span style="color:#61ce3c">"value: name, valueUpdate: 'keyup'"</span> /></span>
+<span style="color:#7f90aa">&lt;<span style="color:#7f90aa">div</span> <span style="color:#7f90aa">data-bind</span>=<span style="color:#61ce3c">"text: prettyName"</span>>&lt;/<span style="color:#7f90aa">div</span>></span>
+</pre>
+				</p>
+
+				<p>
+					View Model:
+<pre style="background:#0c1021;color:#f8f8f8"><span style="color:#fbde2d">var</span> <span style="color:#ff6400">ViewModel</span> <span style="color:#fbde2d">=</span> <span style="color:#fbde2d">function</span>() {
+    this.<span style="color:#8da6ce">name</span> <span style="color:#fbde2d">=</span> ko.observable(<span style="color:#61ce3c">'World'</span>);
+    this.prettyName <span style="color:#fbde2d">=</span> ko.computed(<span style="color:#fbde2d">function</span>() {
+        <span style="color:#fbde2d">return</span> <span style="color:#61ce3c">"Hello "</span> <span style="color:#fbde2d">+</span> this.<span style="color:#8da6ce">name</span>() <span style="color:#fbde2d">+</span> <span style="color:#61ce3c">"!"</span>;
+    }, this);
+};
+ko.applyBindings(<span style="color:#fbde2d">new</span> <span style="color:#ff6400">ViewModel</span>());
+</pre>
+				</p>
+			</div>
+
+			<div id="data-binds" data-x="9000" data-y="1000" data-z="2000" class="step">
+				<h3>Data Binds for almost anything!</h3>
+
+				<p>
+					<ui>
+						<li>visible</li>
+						<li>html / text / value</li>
+						<li>css / style</li>
+						<li>if / foreach</li>
+						<li>click / submit / enable / checked / options</li>
+					</ul>
+				</p>
+			</div>
+
+			<div id="data-bind-ext" data-x="9000" data-z="2000" class="step center">
+				<h3>Trivially extensible</h3>
+
+				<p>
+					Creating custom reusable bindings can be done in just a few lines of code
+					<br />
+					<small>(Example ahead)</small>
+				</p>
+			</div>
+
+			<div id="vanilla-ko" data-x="10500" data-z="2000" class="step">
+				Vanilla Knockout however, does not provide some features such as:
+
+				<ul>
+					<li>Localization</li>
+					<li>Templating (It does, but it's terrible)</li>
+					<li>Poor modularization support</li>
+					<li>ORM</li>
+					<li>Routing</li>
+				</ul>
+			</div>
+
+			<div id="bennu-ko" data-x="12000" data-z="2000" class="step center">
+				<h1>Bennu-Knockout</h1>
+
+				<p>
+					<small>(Sorry, no funny logo)</small>
+				</p>
+			</div>
+
+			<div id="bennu-ko-features" data-x="13500" data-z="2000" class="step">
+				<h3>Bennu Knockout</h3>
+
+				<ul>
+					<li>Easy Localization Support</li>
+					<li>Template loading</li>
+					<li>Proper modularization</li>
+					<li>No configuration boilerplate required</li>
+				</ul>
+			</div>
+
+			<div id="bennu-ko-archetype" data-x="15000" data-z="2000" class="step center">
+				<h1>Example</hi>
+                </div>
+
+            	<div id="bennu-ko-backbone" data-x="16500" data-z="2000" class="step center">
+				<h1>Backbone</h1>
+                <p><small>(huh? wasn't this a knockout presentation?)</small></p>
+			</div>
+
+            <div id="bennu-ko-knockback" data-x="18000" data-z="2000" class="step center">
+                <img src="imgs/knockback-diagram.png" ></img>
+           
+            </div>
+            <div id="bennu-kb-routers" data-x="19500" data-z="2000" class="step">
+            <h1>Backbone</h1>
+            <ul><li>Backbone routers</li></ul>
+           
+            </div>
+            <div id="bennu-kb-observable" data-x="21000" data-z="2000" class="step">
+                <h3>Knockout+Backbone = Knockback</h3>
+                <ul>
+                    <li><p>Backbone.Model -> k<strong>b</strong>.observable</p>
+                    <pre style='color:#d1d1d1;background:#000000; font-size:19px;'>
+<span style='color:#e66170; font-weight:bold; '>var</span> model <span style='color:#d2cd86; '>=</span> <span style='color:#e66170; font-weight:bold; '>new</span> Backbone<span style='color:#d2cd86; '>.</span>Model<span style='color:#d2cd86; '>(</span><span style='color:#b060b0; '>{</span>first_name<span style='color:#b060b0; '>:</span> <span style='color:#02d045; '>"</span><span style='color:#00c4c4; '>Planet</span><span style='color:#02d045; '>"</span><span style='color:#d2cd86; '>,</span> last_name<span style='color:#b060b0; '>:</span> <span style='color:#02d045; '>"</span><span style='color:#00c4c4; '>Earth</span><span style='color:#02d045; '>"</span><span style='color:#b060b0; '>}</span><span style='color:#d2cd86; '>)</span><span style='color:#b060b0; '>;</span>
+ 
+<span style='color:#e66170; font-weight:bold; '>var</span> ViewModel <span style='color:#d2cd86; '>=</span> <span style='color:#e66170; font-weight:bold; '>function</span><span style='color:#d2cd86; '>(</span>model<span style='color:#d2cd86; '>)</span> <span style='color:#b060b0; '>{</span>
+  <span style='color:#e66170; font-weight:bold; '>this</span><span style='color:#d2cd86; '>.</span>first_name <span style='color:#d2cd86; '>=</span> kb<span style='color:#d2cd86; '>.</span>observable<span style='color:#d2cd86; '>(</span>model<span style='color:#d2cd86; '>,</span> <span style='color:#00c4c4; '>'first_name'</span><span style='color:#d2cd86; '>)</span><span style='color:#b060b0; '>;</span>
+  <span style='color:#e66170; font-weight:bold; '>this</span><span style='color:#d2cd86; '>.</span>last_name <span style='color:#d2cd86; '>=</span> kb<span style='color:#d2cd86; '>.</span>observable<span style='color:#d2cd86; '>(</span>model<span style='color:#d2cd86; '>,</span> <span style='color:#00c4c4; '>'last_name'</span><span style='color:#d2cd86; '>)</span><span style='color:#b060b0; '>;</span>
+  <span style='color:#9999a9; '>/* this.full_name = ko.computed((function() {</span>
+<span style='color:#9999a9; '>&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;return "" + (this.first_name())</span>
+<span style='color:#9999a9; '>&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;+ " " + (this.last_name());</span>
+<span style='color:#9999a9; '>&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;}), this); */</span>
+<span style='color:#b060b0; '>}</span><span style='color:#b060b0; '>;</span>
+ 
+<span style='color:#e66170; font-weight:bold; '>var</span> view_model <span style='color:#d2cd86; '>=</span> <span style='color:#e66170; font-weight:bold; '>new</span> ViewModel<span style='color:#d2cd86; '>(</span>model<span style='color:#d2cd86; '>)</span><span style='color:#b060b0; '>;</span>
+</pre>
+                   
+                    </li>
+                </ul>
+           
+            </div>
+
+            <div id="bennu-kb-collectionObservable" data-x="22500" data-z="2000" class="step">
+                <h3>Knockout+Backbone = Knockback</h3>
+                <ul>
+                    <li><p>Backbone.Collection -> k<strong>b</strong>.collectionObservable</p>
+                    <pre style='color:#d1d1d1;background:#000000; font-size:19px;'>
+<span style='color:#e66170; font-weight:bold; '>var</span> earth <span style='color:#d2cd86; '>=</span> <span style='color:#e66170; font-weight:bold; '>new</span> Backbone<span style='color:#d2cd86; '>.</span>Model<span style='color:#d2cd86; '>(</span><span style='color:#b060b0; '>{</span>first_name<span style='color:#b060b0; '>:</span> <span style='color:#00c4c4; '>'Planet'</span><span style='color:#d2cd86; '>,</span> last_name<span style='color:#b060b0; '>:</span> <span style='color:#00c4c4; '>'Earth'</span><span style='color:#b060b0; '>}</span><span style='color:#d2cd86; '>)</span><span style='color:#b060b0; '>;</span>
+<span style='color:#e66170; font-weight:bold; '>var</span> mars <span style='color:#d2cd86; '>=</span> <span style='color:#e66170; font-weight:bold; '>new</span> Backbone<span style='color:#d2cd86; '>.</span>Model<span style='color:#d2cd86; '>(</span><span style='color:#b060b0; '>{</span>first_name<span style='color:#b060b0; '>:</span> <span style='color:#00c4c4; '>'Planet'</span><span style='color:#d2cd86; '>,</span> last_name<span style='color:#b060b0; '>:</span> <span style='color:#00c4c4; '>'Mars'</span><span style='color:#b060b0; '>}</span><span style='color:#d2cd86; '>)</span><span style='color:#b060b0; '>;</span>
+<span style='color:#e66170; font-weight:bold; '>var</span> the_moon <span style='color:#d2cd86; '>=</span> <span style='color:#e66170; font-weight:bold; '>new</span> Backbone<span style='color:#d2cd86; '>.</span>Model<span style='color:#d2cd86; '>(</span><span style='color:#b060b0; '>{</span>first_name<span style='color:#b060b0; '>:</span> <span style='color:#00c4c4; '>'The'</span><span style='color:#d2cd86; '>,</span> last_name<span style='color:#b060b0; '>:</span> <span style='color:#00c4c4; '>'Moon'</span><span style='color:#b060b0; '>}</span><span style='color:#d2cd86; '>)</span><span style='color:#b060b0; '>;</span>
+ 
+<span style='color:#e66170; font-weight:bold; '>var</span> planets <span style='color:#d2cd86; '>=</span> <span style='color:#e66170; font-weight:bold; '>new</span> Backbone<span style='color:#d2cd86; '>.</span>Collection<span style='color:#d2cd86; '>(</span><span style='color:#d2cd86; '>[</span>earth<span style='color:#d2cd86; '>,</span> the_moon<span style='color:#d2cd86; '>,</span> mars<span style='color:#d2cd86; '>]</span><span style='color:#d2cd86; '>)</span><span style='color:#b060b0; '>;</span>
+ 
+<span style='color:#e66170; font-weight:bold; '>var</span> view_model <span style='color:#d2cd86; '>=</span> <span style='color:#b060b0; '>{</span>
+  planets<span style='color:#b060b0; '>:</span> kb<span style='color:#d2cd86; '>.</span>collectionObservable<span style='color:#d2cd86; '>(</span>planets<span style='color:#d2cd86; '>,</span> <span style='color:#b060b0; '>{</span> view_model<span style='color:#b060b0; '>:</span> kb<span style='color:#d2cd86; '>.</span>ViewModel <span style='color:#b060b0; '>}</span><span style='color:#d2cd86; '>)</span>
+<span style='color:#b060b0; '>}</span><span style='color:#b060b0; '>;</span>
+</pre>
+                    </li>
+                </ul>
+           
+            </div>
+             <div id="bennu-kb-pitfalls" data-x="24000" data-z="2000" class="step">
+                <h3>Knockback - pitfalls</h3>
+                <ul>
+                    <li><p>Collections with thousand of items  </p></li>
+                    <li><p>Solution: apply the viewModel to a sliced version only</p>
+                    <pre style='color:#d1d1d1;background:#000000; font-size: 19px;'>
+<span style='color:#e66170; font-weight:bold; '>var</span> ViewModel <span style='color:#d2cd86; '>=</span> <span style='color:#e66170; font-weight:bold; '>function</span><span style='color:#d2cd86; '>(</span>model<span style='color:#d2cd86; '>)</span> <span style='color:#b060b0; '>{</span>
+ <span style='color:#d2cd86; '>.</span><span style='color:#d2cd86; '>.</span><span style='color:#d2cd86; '>.</span>
+ self<span style='color:#d2cd86; '>.</span>collectionAllItems <span style='color:#d2cd86; '>=</span> kb<span style='color:#d2cd86; '>.</span>collectionObservable<span style='color:#d2cd86; '>(</span>collection<span style='color:#d2cd86; '>,</span> <span style='color:#b060b0; '>{</span>
+                models_only <span style='color:#b060b0; '>:</span> <span style='color:#0f4d75; '>true</span>
+            <span style='color:#b060b0; '>}</span><span style='color:#d2cd86; '>)</span><span style='color:#b060b0; '>;</span>
+  self<span style='color:#d2cd86; '>.</span>collection <span style='color:#d2cd86; '>=</span> ko<span style='color:#d2cd86; '>.</span>computed<span style='color:#d2cd86; '>(</span><span style='color:#e66170; font-weight:bold; '>function</span><span style='color:#d2cd86; '>(</span><span style='color:#d2cd86; '>)</span> <span style='color:#b060b0; '>{</span>
+ <span style='color:#d2cd86; '>.</span><span style='color:#d2cd86; '>.</span><span style='color:#d2cd86; '>.</span>
+                   <span style='color:#e66170; font-weight:bold; '>var</span> slicedCollection <span style='color:#d2cd86; '>=</span> self<span style='color:#d2cd86; '>.</span>collectionAllItems<span style='color:#d2cd86; '>(</span><span style='color:#d2cd86; '>)</span><span style='color:#d2cd86; '>.</span>
+                      <span style='color:#e66170; font-weight:bold; '>slice</span><span style='color:#d2cd86; '>(</span>firstItemIndex<span style='color:#d2cd86; '>,</span> firstItemIndex <span style='color:#d2cd86; '>+</span> itemsPerPage<span style='color:#d2cd86; '>)</span><span style='color:#b060b0; '>;</span>
+                    <span style='color:#e66170; font-weight:bold; '>var</span> slicedArray <span style='color:#d2cd86; '>=</span> ko<span style='color:#d2cd86; '>.</span>observableArray<span style='color:#d2cd86; '>(</span><span style='color:#d2cd86; '>)</span><span style='color:#b060b0; '>;</span>
+                    slicedCollection<span style='color:#d2cd86; '>.</span>forEach<span style='color:#d2cd86; '>(</span><span style='color:#e66170; font-weight:bold; '>function</span><span style='color:#d2cd86; '>(</span><span style='color:#e66170; font-weight:bold; '>item</span><span style='color:#d2cd86; '>)</span> <span style='color:#b060b0; '>{</span>
+                        slicedArray<span style='color:#d2cd86; '>.</span>push<span style='color:#d2cd86; '>(</span><span style='color:#e66170; font-weight:bold; '>new</span> IndividualModelViewModel<span style='color:#d2cd86; '>(</span><span style='color:#e66170; font-weight:bold; '>item</span><span style='color:#d2cd86; '>)</span><span style='color:#d2cd86; '>)</span><span style='color:#b060b0; '>;</span>
+                    <span style='color:#b060b0; '>}</span><span style='color:#d2cd86; '>)</span><span style='color:#b060b0; '>;</span>
+                    <span style='color:#e66170; font-weight:bold; '>return</span> slicedArray<span style='color:#d2cd86; '>(</span><span style='color:#d2cd86; '>)</span><span style='color:#b060b0; '>;</span>
+            <span style='color:#b060b0; '>}</span><span style='color:#d2cd86; '>)</span><span style='color:#b060b0; '>;</span>
+<span style='color:#b060b0; '>}</span><span style='color:#b060b0; '>;</span>
+</pre>
+                    </li>
+                </ul>
+           
+            </div>
+
+            <div id="questions" data-x="24000" data-z="2000" data-y="-1500" data-rotate="180" class="step center">
+            	<h1>Questions?</h1>
+            </div>
+            <div id="furtherReading" data-x="25500" data-z="2000" data-y="-1500" data-rotate="180" class="step">
+            	<h1>Further reading</h1>
+                <ul>
+                    <li><a href="http://learn.knockoutjs.com/" target="_blank">Knockout tutorial</a></li>
+                    <li><a href="http://www.backbonejs.org/" target="_blank">Backbone</a></li>
+                    <li><a href="http://kmalakoff.github.io/knockback/" target="_blank">Knockback</a></li>
+                </ul>
+            </div>
+		</div>
+		<script type="text/javascript" src="impress.js"></script>
+		<script type="text/javascript" src="knockback-full-stack.js"></script>
+		<script type="text/javascript">impress().init();</script>
+	</body>
+
+	<script>
+		var ViewModel = function() {
+			this.name = ko.observable('World');
+			this.prettyName = ko.computed(function() {
+				return "Hello " + this.name() + "!";
+			}, this);
+		};
+		ko.applyBindings(new ViewModel());
+	</script>
+
+</html>

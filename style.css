@@ -1,0 +1,40 @@
+html, body { 
+	background: #B85C1E url(main-background.jpg) no-repeat top center; 
+	color: #eee;
+	font-family: "Helvetica Light", Helvetica, Arial, sans-serif;
+	line-height: 1.231;
+}
+
+img {
+    max-width: 100%;
+    max-height: 100%;
+}
+
+code, pre {
+	font-size: 20px;
+	line-height: 1.6;
+}
+
+.step {
+	font-size: 40px;
+	width: 900px;
+}
+
+.big {
+	font-size: 75px;
+}
+
+.center {
+	text-align: center;
+}
+
+.ist {
+	position: absolute;
+	bottom: 10;
+	left: 10;
+}
+
+input[type="text"] {
+	height: 50px;
+	font-size: 40px;
+}
