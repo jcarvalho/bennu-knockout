@@ -10,6 +10,7 @@ define(['jquery', 'knockout', 'i18n!nls/messages'], function($, ko, messages) {
 		$.ajax({
 			type: "GET",
 			url: fullUrl,
+			async:false,
 			dataType: "text",
 			success: function(template, status, response) {
 				callback(template, status, response);
