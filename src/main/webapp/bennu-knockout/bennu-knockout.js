@@ -28,6 +28,10 @@ define(['jquery', 'knockout', 'i18n!nls/messages'], function($, ko, messages) {
 			if(!viewModel.template) {
 				viewModel = viewModel['_$bennuKo$_parent'];
 			}
+			//let's make possible to make the changes of template and
+			//viewModel atomic
+			if (viewModel.changeOccuring && viewModel.changeOccuring())
+			 return;
 			var templateName = viewModel.template();
 			if(templateName) {
 				getTemplate(templateName, function(template) {
@@ -66,7 +70,9 @@ define(['jquery', 'knockout', 'i18n!nls/messages'], function($, ko, messages) {
 		if(!template) {
 			appContents[appName] = template = {
 				template: ko.observable(),
-				selectedViewModel: ko.observable(null)
+				selectedViewModel: ko.observable(null),
+				changeOccuring: ko.observable(false)
+				
 			};
 		}
 		return template;
@@ -77,8 +83,10 @@ define(['jquery', 'knockout', 'i18n!nls/messages'], function($, ko, messages) {
 		loadPage: function(appName, viewModel, template) {
 			var targetModel = getAppContentsForView(appName);
 			viewModel['_$bennuKo$_parent'] = targetModel;
+			targetModel.changeOccuring(true);
 			targetModel.selectedViewModel(viewModel);
 			targetModel.template(template);
+			targetModel.changeOccuring(false);
 		},
 
 		initialize: function() {
